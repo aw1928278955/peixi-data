@@ -1,1 +1,193 @@
-{"updatedAt":"2026-10-05T18:57:00+08:00","items":{}}
+{
+ "schema": 1,
+ "updatedAt": "2026-10-05T19:10:00+08:00",
+ "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
+ "items": {
+  "VOO": [
+   {
+    "ex": "2026-09-28",
+    "pay": "2026-09-30",
+    "amount": 1.8226,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/voo/dividend/"
+    ],
+    "rec": "2026-09-28"
+   },
+   {
+    "ex": "2026-06-26",
+    "pay": "2026-06-30",
+    "amount": 1.9622,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/voo/dividend/"
+    ],
+    "rec": "2026-06-26"
+   },
+   {
+    "ex": "2026-03-27",
+    "pay": "2026-03-31",
+    "amount": 1.8724,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/voo/dividend/"
+    ],
+    "rec": "2026-03-27"
+   },
+   {
+    "ex": "2025-12-22",
+    "pay": "2025-12-24",
+    "amount": 1.771,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/voo/dividend/"
+    ],
+    "rec": "2025-12-22"
+   }
+  ],
+  "QQQM": [
+   {
+    "ex": "2026-09-21",
+    "pay": "2026-09-25",
+    "amount": 0.31266,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/qqqm/dividend/"
+    ],
+    "rec": "2026-09-21"
+   },
+   {
+    "ex": "2026-06-22",
+    "pay": "2026-06-26",
+    "amount": 0.35215,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/qqqm/dividend/"
+    ],
+    "rec": "2026-06-22"
+   },
+   {
+    "ex": "2026-03-23",
+    "pay": "2026-03-27",
+    "amount": 0.32769,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/qqqm/dividend/"
+    ],
+    "rec": "2026-03-23"
+   },
+   {
+    "ex": "2025-12-22",
+    "pay": "2025-12-26",
+    "amount": 0.32301,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://stockanalysis.com/etf/qqqm/dividend/"
+    ],
+    "rec": "2025-12-22"
+   }
+  ],
+  "00919": [
+   {
+    "ex": "2026-09-16",
+    "pay": "2026-10-15",
+    "amount": 1.1,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.capitalfund.com.tw/etf/product/detail/195/interest",
+     "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3"
+    ]
+   },
+   {
+    "ex": "2026-06-16",
+    "pay": null,
+    "amount": 1.0,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3"
+    ],
+    "note": "發放日資料來源未列"
+   },
+   {
+    "ex": "2026-03-17",
+    "pay": null,
+    "amount": 0.78,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3"
+    ],
+    "note": "發放日資料來源未列"
+   }
+  ],
+  "00878": [
+   {
+    "ex": "2026-11-17",
+    "pay": "2026-12-11",
+    "amount": null,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf"
+    ],
+    "note": "金額尚未公告；日期為網站整理之時程"
+   },
+   {
+    "ex": "2026-08-18",
+    "pay": "2026-09-11",
+    "amount": 1.01,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
+     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/"
+    ]
+   },
+   {
+    "ex": "2026-05-19",
+    "pay": "2026-06-12",
+    "amount": 0.66,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
+     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/"
+    ]
+   },
+   {
+    "ex": "2026-02-26",
+    "pay": "2026-03-23",
+    "amount": 0.42,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
+     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/"
+    ]
+   }
+  ],
+  "0056": [
+   {
+    "ex": "2026-10-22",
+    "pay": "2026-11-11",
+    "amount": 1.72,
+    "officialPay": true,
+    "amountEstimated": true,
+    "sources": [
+     "https://www.bnext.com.tw/article/92403/0056-dividend-q4-2026-ex-dividend-payment-date"
+    ],
+    "note": "10/1 預估公告，正式金額待發行商確認"
+   }
+  ]
+ }
+}
