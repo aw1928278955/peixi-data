@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-05T19:10:00+08:00",
+ "updatedAt": "2026-10-08T07:57:17+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -109,25 +109,27 @@
    },
    {
     "ex": "2026-06-16",
-    "pay": null,
+    "pay": "2026-07-13",
     "amount": 1.0,
     "officialPay": false,
     "amountEstimated": false,
     "sources": [
-     "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3"
+     "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3",
+     "https://winvest.tw/News/Detail/88314"
     ],
-    "note": "發放日資料來源未列"
+    "note": "發放日取自 winvest 整理，未經發行商公告頁直接確認"
    },
    {
     "ex": "2026-03-17",
-    "pay": null,
+    "pay": "2026-04-14",
     "amount": 0.78,
     "officialPay": false,
     "amountEstimated": false,
     "sources": [
-     "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3"
+     "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3",
+     "https://winvest.tw/News/Detail/88314"
     ],
-    "note": "發放日資料來源未列"
+    "note": "發放日取自 winvest 整理，未經發行商公告頁直接確認"
    }
   ],
   "00878": [
