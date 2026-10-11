@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-08T07:57:17+08:00",
+ "updatedAt": "2026-10-12T07:53:12+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -152,7 +152,8 @@
     "amountEstimated": false,
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
-     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/"
+     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/",
+     "https://tw.stock.yahoo.com/quote/00878/dividend"
     ]
    },
    {
@@ -163,7 +164,8 @@
     "amountEstimated": false,
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
-     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/"
+     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/",
+     "https://tw.stock.yahoo.com/quote/00878/dividend"
     ]
    },
    {
@@ -174,8 +176,20 @@
     "amountEstimated": false,
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
-     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/"
+     "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/",
+     "https://tw.stock.yahoo.com/quote/00878/dividend"
     ]
+   },
+   {
+    "ex": "2025-11-18",
+    "pay": "2025-12-12",
+    "amount": 0.4,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://tw.stock.yahoo.com/quote/00878/dividend"
+    ],
+    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
    }
   ],
   "0056": [
@@ -186,9 +200,10 @@
     "officialPay": true,
     "amountEstimated": true,
     "sources": [
-     "https://www.bnext.com.tw/article/92403/0056-dividend-q4-2026-ex-dividend-payment-date"
+     "https://www.bnext.com.tw/article/92403/0056-dividend-q4-2026-ex-dividend-payment-date",
+     "https://www.peoplenews.tw/?p=58675"
     ],
-    "note": "10/1 預估公告，正式金額待發行商確認"
+    "note": "10/2 預估公告，10/20 第二階段公告確定金額"
    }
   ]
  }
