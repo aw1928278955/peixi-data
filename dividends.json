@@ -1,9 +1,20 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-15T07:57:43+08:00",
+ "updatedAt": "2026-10-19T12:00:00+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
+   {
+    "ex": "2026-12-21",
+    "pay": "2026-12-23",
+    "amount": null,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.dividendvision.com/dividends/voo-dividend-calendar"
+    ],
+    "note": "金額尚未公告；日期為網站轉載之發行商預定時程，可能調整"
+   },
    {
     "ex": "2026-09-28",
     "pay": "2026-09-30",
@@ -215,6 +226,17 @@
      "https://www.peoplenews.tw/?p=58675"
     ],
     "note": "10/2 預估公告，10/20 第二階段公告確定金額"
+   },
+   {
+    "ex": "2026-07-21",
+    "pay": "2026-08-10",
+    "amount": 1.35,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://tw.finance.yahoo.com/quote/0056.TW/dividend"
+    ],
+    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
    }
   ]
  }
