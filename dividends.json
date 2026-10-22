@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-19T12:00:00+08:00",
+ "updatedAt": "2026-10-22T20:00:00+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -133,25 +133,27 @@
     "ex": "2026-06-16",
     "pay": "2026-07-13",
     "amount": 1.0,
-    "officialPay": false,
+    "officialPay": true,
     "amountEstimated": false,
     "sources": [
      "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3",
-     "https://winvest.tw/News/Detail/88314"
+     "https://winvest.tw/News/Detail/88314",
+     "https://www.twse.com.tw/zh/ETFortune/etfInfo/00919"
     ],
-    "note": "發放日取自 winvest 整理，未經發行商公告頁直接確認"
+    "note": "發放日與金額經證交所 ETFortune 頁面確認"
    },
    {
     "ex": "2026-03-17",
     "pay": "2026-04-14",
     "amount": 0.78,
-    "officialPay": false,
+    "officialPay": true,
     "amountEstimated": false,
     "sources": [
      "https://www.bnext.com.tw/article/91985/00919-dividend-2026-q3",
-     "https://winvest.tw/News/Detail/88314"
+     "https://winvest.tw/News/Detail/88314",
+     "https://www.twse.com.tw/zh/ETFortune/etfInfo/00919"
     ],
-    "note": "發放日取自 winvest 整理，未經發行商公告頁直接確認"
+    "note": "發放日與金額經證交所 ETFortune 頁面確認"
    }
   ],
   "00878": [
@@ -220,12 +222,13 @@
     "pay": "2026-11-11",
     "amount": 1.72,
     "officialPay": true,
-    "amountEstimated": true,
+    "amountEstimated": false,
     "sources": [
      "https://www.bnext.com.tw/article/92403/0056-dividend-q4-2026-ex-dividend-payment-date",
-     "https://www.peoplenews.tw/?p=58675"
+     "https://www.peoplenews.tw/?p=58675",
+     "https://newtalk.tw/news/view/2026-10-20/1066643"
     ],
-    "note": "10/2 預估公告，10/20 第二階段公告確定金額"
+    "note": "10/2 預估公告，10/20 第二階段公告確定 1.72 元（新頭殼 10/20 報導）"
    },
    {
     "ex": "2026-07-21",
