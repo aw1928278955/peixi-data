@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-25T07:52:18+08:00",
+ "updatedAt": "2026-10-27T07:58:38+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -253,6 +253,17 @@
      "https://newtalk.tw/news/view/2026-04-01/1027581"
     ],
     "note": "4/1 公告配息 1 元；除息日與發放日取自財經媒體，未經發行商公告頁直接確認"
+   },
+   {
+    "ex": "2026-01-22",
+    "pay": "2026-02-11",
+    "amount": 0.866,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://tw.stock.yahoo.com/quote/0056/dividend"
+    ],
+    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
    }
   ]
  }
