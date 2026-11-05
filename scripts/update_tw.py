@@ -194,6 +194,18 @@ def cathay_announce(data, changed):
         if before != (cur['pay'], cur['amount'], cur['amountEstimated'], cur['officialPay']): changed.append(('00878', ex, '公告確認'))
     lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
 
+def dedupe(data, changed):
+    """官方來源有了某一期，就把 Yahoo 備援留下、日期對不上的同期舊項目拿掉（相差 10 天內視為同一期）。"""
+    for code in CODES:
+        lst = data['items'].get(code, [])
+        off = [x for x in lst if x.get('officialPay') and x.get('ex')]
+        keep = []
+        for x in lst:
+            if not x.get('officialPay') and x.get('ex') and any(o is not x and abs((datetime.date.fromisoformat(o['ex']) - datetime.date.fromisoformat(x['ex'])).days) <= 10 and o['ex'] != x['ex'] for o in off):
+                changed.append((code, x['ex'], '移除重複的備援項目')); continue
+            keep.append(x)
+        data['items'][code] = keep
+
 def main():
     path = 'dividends.json'
     data = json.load(open(path, encoding='utf-8'))
@@ -226,6 +238,7 @@ def main():
     cathay_announce(data, changed)
     changed += capital_merge(data)
     changed += yuanta_merge(data)
+    dedupe(data, changed)
     if not changed:
         print('沒有變動'); return
     data['updatedAt'] = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(timespec='seconds')
