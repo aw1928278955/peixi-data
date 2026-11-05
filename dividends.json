@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-11-05T16:24:14+08:00",
+ "updatedAt": "2026-11-05T16:31:50+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -243,6 +243,17 @@
   ],
   "0056": [
    {
+    "ex": "2027-01-22",
+    "pay": "2027-02-23",
+    "amount": null,
+    "officialPay": false,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.yuantafunds.com/myfund/information/1084"
+    ],
+    "note": "元大投信官網預計日程；金額尚未公告"
+   },
+   {
     "ex": "2026-10-22",
     "pay": "2026-11-11",
     "amount": 1.72,
@@ -251,44 +262,65 @@
     "sources": [
      "https://www.bnext.com.tw/article/92403/0056-dividend-q4-2026-ex-dividend-payment-date",
      "https://www.peoplenews.tw/?p=58675",
-     "https://newtalk.tw/news/view/2026-10-20/1066643"
+     "https://newtalk.tw/news/view/2026-10-20/1066643",
+     "https://www.yuantafunds.com/myfund/information/1084"
     ],
-    "note": "10/2 預估公告，10/20 第二階段公告確定 1.72 元（新頭殼 10/20 報導）"
+    "note": "金額經元大投信官網確認；發放日官網尚未公布，取自新聞報導"
    },
    {
     "ex": "2026-07-21",
     "pay": "2026-08-10",
     "amount": 1.35,
-    "officialPay": false,
+    "officialPay": true,
     "amountEstimated": false,
     "sources": [
-     "https://tw.finance.yahoo.com/quote/0056.TW/dividend"
-    ],
-    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
+     "https://tw.finance.yahoo.com/quote/0056.TW/dividend",
+     "https://www.yuantafunds.com/myfund/information/1084"
+    ]
    },
    {
     "ex": "2026-04-23",
     "pay": "2026-05-14",
     "amount": 1.0,
-    "officialPay": false,
+    "officialPay": true,
     "amountEstimated": false,
     "sources": [
      "https://www.businesstoday.com.tw/article/category/183013/post/202604190005/",
      "https://uanalyze.com.tw/articles/9547849965",
-     "https://newtalk.tw/news/view/2026-04-01/1027581"
-    ],
-    "note": "4/1 公告配息 1 元；除息日與發放日取自財經媒體，未經發行商公告頁直接確認"
+     "https://newtalk.tw/news/view/2026-04-01/1027581",
+     "https://www.yuantafunds.com/myfund/information/1084"
+    ]
    },
    {
     "ex": "2026-01-22",
     "pay": "2026-02-11",
     "amount": 0.866,
-    "officialPay": false,
+    "officialPay": true,
     "amountEstimated": false,
     "sources": [
-     "https://tw.stock.yahoo.com/quote/0056/dividend"
-    ],
-    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
+     "https://tw.stock.yahoo.com/quote/0056/dividend",
+     "https://www.yuantafunds.com/myfund/information/1084"
+    ]
+   },
+   {
+    "ex": "2025-10-23",
+    "pay": "2025-11-14",
+    "amount": 0.866,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.yuantafunds.com/myfund/information/1084"
+    ]
+   },
+   {
+    "ex": "2025-07-21",
+    "pay": "2025-08-08",
+    "amount": 0.866,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.yuantafunds.com/myfund/information/1084"
+    ]
    }
   ]
  }
