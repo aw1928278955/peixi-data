@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-11-05T16:31:50+08:00",
+ "updatedAt": "2026-11-05T16:36:05+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -162,13 +162,14 @@
     "pay": "2026-12-11",
     "amount": 1.25,
     "officialPay": true,
-    "amountEstimated": false,
+    "amountEstimated": true,
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
      "https://tw.stock.yahoo.com/quote/00878.TW/dividend",
-     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5",
+     "https://cwapi.cathaysite.com.tw/uploads/07cathaynews__online/6136.pdf"
     ],
-    "note": "發放日經國泰投信官網確認；金額尚未見於官網，取自 Yahoo 奇摩股市"
+    "note": "國泰投信公告（2026/11/02）的預估金額，實際金額於除息日前 3 個營業日公布"
    },
    {
     "ex": "2026-08-18",
