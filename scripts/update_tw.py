@@ -23,6 +23,52 @@ def parse(raw):
             rows.append({'ex': ex, 'pay': pay, 'amount': amt})
     return rows
 
+# ---- 國泰投信官網（官方）：00878（基金代號 CN）----
+CATHAY = 'https://cwapi.cathaysite.com.tw/api/Fund/{}?FundCode=CN'
+CATHAY_SRC = 'https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5'
+
+def cathay_json(ep):
+    req = urllib.request.Request(CATHAY.format(ep), headers={
+        'User-Agent': 'Mozilla/5.0', 'Origin': 'https://www.cathaysite.com.tw', 'Referer': 'https://www.cathaysite.com.tw/'})
+    return json.loads(urllib.request.urlopen(req, timeout=30).read().decode('utf-8'))
+
+def d8(v):
+    return str(v).replace('/', '-')[:10] if v else None
+
+def cathay_merge(data):
+    changed = []
+    lst = data['items'].setdefault('00878', [])
+    try:
+        hist = cathay_json('GetHistoryAllotInfo')['result']['fundAllotInfoList']
+        near = cathay_json('GetNearAllotSchedule')['result']
+    except Exception as e:
+        print('國泰官網抓取失敗', e); return changed
+    print('國泰官網：歷史', len(hist), '筆，下一次', near)
+    def mark(ex, pay, amount, note):
+        cur = next((x for x in lst if x.get('ex') == ex), None)
+        if cur is None:
+            cur = {'ex': ex, 'pay': pay, 'amount': amount, 'officialPay': True, 'amountEstimated': False, 'sources': [CATHAY_SRC]}
+            lst.append(cur); changed.append(('00878', ex, '國泰新增')); return
+        before = (cur.get('pay'), cur.get('amount'), cur.get('officialPay'))
+        cur['pay'] = pay
+        if amount: cur['amount'] = amount; cur['amountEstimated'] = False
+        cur['officialPay'] = True
+        if CATHAY_SRC not in cur.setdefault('sources', []): cur['sources'].append(CATHAY_SRC)
+        if note: cur['note'] = note
+        else: cur.pop('note', None)
+        if before != (cur.get('pay'), cur.get('amount'), cur.get('officialPay')): changed.append(('00878', ex, '國泰確認'))
+    for h in hist[:6]:
+        ex, pay = d8(h.get('transDate')), d8(h.get('lendingDate'))
+        if ex and pay and h.get('allotMoney'): mark(ex, pay, float(h['allotMoney']), None)
+    nex, npay = d8(near.get('transDate')), d8(near.get('lendingDate'))
+    if nex and npay and not any(x.get('ex') == nex and x.get('amount') and 'cathaysite' in ' '.join(x.get('sources', [])) and x.get('officialPay') and False for x in lst):
+        has = next((x for x in lst if x.get('ex') == nex), None)
+        note = '發放日經國泰投信官網確認；金額尚未見於官網，取自 Yahoo 奇摩股市' if (has and has.get('amount')) else '發放日經國泰投信官網確認；金額尚未公告'
+        if not any(h for h in hist if d8(h.get('transDate')) == nex):
+            mark(nex, npay, None, note)
+    lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
+    return changed
+
 def main():
     path = 'dividends.json'
     data = json.load(open(path, encoding='utf-8'))
@@ -51,6 +97,7 @@ def main():
                     cur['note'] = '取自 Yahoo 奇摩股市，未經發行商公告頁直接確認'
                     changed.append((code, r['ex'], '更新'))
         lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
+    changed += cathay_merge(data)
     if not changed:
         print('沒有變動'); return
     data['updatedAt'] = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(timespec='seconds')
