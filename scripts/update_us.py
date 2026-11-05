@@ -36,7 +36,10 @@ def dd(a, b):
 
 def merge(lst, rows, src):
     changed = []
+    cutoff = (datetime.date.today() - datetime.timedelta(days=120)).isoformat()   # 太舊的歷史不補，只處理近期與未來
     for r in rows:
+        if r['ex'] < cutoff:
+            continue
         if any(x.get('ex') == r['ex'] and x.get('amount') for x in lst):
             continue
         ph = next((x for x in lst if not x.get('amount') and dd(x['ex'], r['ex']) <= 14), None)
