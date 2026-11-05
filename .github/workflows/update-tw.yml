@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get install -y -qq poppler-utils
       - run: python3 scripts/update_tw.py
       - run: python3 scripts/update_us.py
       - name: commit
