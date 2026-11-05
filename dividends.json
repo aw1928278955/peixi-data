@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-10-27T07:58:38+08:00",
+ "updatedAt": "2026-11-05T15:36:43+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -160,13 +160,14 @@
    {
     "ex": "2026-11-17",
     "pay": "2026-12-11",
-    "amount": null,
+    "amount": 1.25,
     "officialPay": false,
     "amountEstimated": false,
     "sources": [
-     "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf"
+     "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
+     "https://tw.stock.yahoo.com/quote/00878.TW/dividend"
     ],
-    "note": "金額尚未公告；日期為網站整理之時程"
+    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
    },
    {
     "ex": "2026-08-18",
