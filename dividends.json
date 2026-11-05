@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-11-05T15:43:32+08:00",
+ "updatedAt": "2026-11-05T16:24:14+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -161,13 +161,14 @@
     "ex": "2026-11-17",
     "pay": "2026-12-11",
     "amount": 1.25,
-    "officialPay": false,
+    "officialPay": true,
     "amountEstimated": false,
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
-     "https://tw.stock.yahoo.com/quote/00878.TW/dividend"
+     "https://tw.stock.yahoo.com/quote/00878.TW/dividend",
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
     ],
-    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
+    "note": "發放日經國泰投信官網確認；金額尚未見於官網，取自 Yahoo 奇摩股市"
    },
    {
     "ex": "2026-08-18",
@@ -178,7 +179,8 @@
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
      "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/",
-     "https://tw.stock.yahoo.com/quote/00878/dividend"
+     "https://tw.stock.yahoo.com/quote/00878/dividend",
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
     ]
    },
    {
@@ -190,7 +192,8 @@
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
      "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/",
-     "https://tw.stock.yahoo.com/quote/00878/dividend"
+     "https://tw.stock.yahoo.com/quote/00878/dividend",
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
     ]
    },
    {
@@ -202,19 +205,40 @@
     "sources": [
      "https://www.money101.com.tw/blog/00878-%E9%85%8D%E6%81%AF-%E6%88%90%E5%88%86%E8%82%A1-esg-etf",
      "https://www.businesstoday.com.tw/article/category/183013/post/202604290083/",
-     "https://tw.stock.yahoo.com/quote/00878/dividend"
+     "https://tw.stock.yahoo.com/quote/00878/dividend",
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
     ]
    },
    {
     "ex": "2025-11-18",
     "pay": "2025-12-12",
     "amount": 0.4,
-    "officialPay": false,
+    "officialPay": true,
     "amountEstimated": false,
     "sources": [
-     "https://tw.stock.yahoo.com/quote/00878/dividend"
-    ],
-    "note": "取自 Yahoo 奇摩股市，未經發行商公告頁直接確認"
+     "https://tw.stock.yahoo.com/quote/00878/dividend",
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
+    ]
+   },
+   {
+    "ex": "2025-08-18",
+    "pay": "2025-09-11",
+    "amount": 0.4,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
+    ]
+   },
+   {
+    "ex": "2025-05-19",
+    "pay": "2025-06-13",
+    "amount": 0.47,
+    "officialPay": true,
+    "amountEstimated": false,
+    "sources": [
+     "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
+    ]
    }
   ],
   "0056": [
