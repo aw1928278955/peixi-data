@@ -9,7 +9,10 @@ jobs:
           python3 - <<'PY'
           import re
           t=open('/tmp/y.html',encoding='utf-8',errors='replace').read()
-          for m in list(re.finditer(r'2026/11/17|2026-11-17|2026/12/11|2026-12-11', t))[:4]:
-              print('PROBE', repr(t[max(0,m.start()-300):m.end()+300]))
+          for m in list(re.finditer(r'"exDividend":\{', t))[:1]:
+              print('PROBE A', t[max(0,m.start()-1500):m.start()])
+              print('PROBE B', t[m.start():m.start()+1200])
+          k=t.find('"cashDividend"')
+          print('PROBE C', t[k-200:k+700])
           print('PROBE len', len(t), 'has1.25', '1.25' in t)
           PY
