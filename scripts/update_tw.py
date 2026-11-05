@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""從玩股網抓台股三檔輪動 ETF 的配息（除息日、發放日、每股現金股利），合併進 dividends.json。
+"""從 Yahoo 奇摩股市抓台股三檔輪動 ETF 的配息（除息日、發放日、每股現金股利），合併進 dividends.json。
 規則：只補空白或非官方的項目；已標 officialPay=true 的絕不覆蓋。抓不到或格式變了就不動檔案。"""
 import json, re, sys, html, urllib.request, datetime
 
 CODES = ['00919', '00878', '0056']
-URL = 'https://www.wantgoo.com/stock/etf/{}/dividend-policy/ex-dividend'
-ROW = re.compile(r'(\d{1,2}(?:\.\d+)?)\s+(\d{4}/\d{2}/\d{2})\s+(\d{4}/\d{2}/\d{2})')
+URL = 'https://tw.stock.yahoo.com/quote/{}.TW/dividend'
+LATEST = re.compile(r'"latestDividend":\{[^{}]*"exDividend":\{"cash":"(\d+(?:\.\d+)?)","cashPayDate":"(\d{4}-\d{2}-\d{2})[^"]*"[^{}]*?"date":"(\d{4}-\d{2}-\d{2})')
 
 def fetch(code):
     req = urllib.request.Request(URL.format(code), headers={
@@ -14,12 +14,11 @@ def fetch(code):
     return urllib.request.urlopen(req, timeout=30).read().decode('utf-8', 'replace')
 
 def parse(raw):
-    text = re.sub(r'<(script|style)[\s\S]*?</\1>', ' ', raw)
-    text = html.unescape(re.sub(r'<[^>]+>', ' ', text))
-    text = re.sub(r'\s+', ' ', text)
+    """Yahoo 奇摩股市頁面內嵌的 latestDividend：最新一期的每股現金股利、發放日、除息日。"""
     rows = []
-    for m in ROW.finditer(text):
-        amt = float(m.group(1)); ex = m.group(2).replace('/', '-'); pay = m.group(3).replace('/', '-')
+    m = LATEST.search(raw)
+    if m:
+        amt = float(m.group(1)); pay = m.group(2); ex = m.group(3)
         if 0 < amt < 10 and pay >= ex:
             rows.append({'ex': ex, 'pay': pay, 'amount': amt})
     return rows
@@ -43,13 +42,13 @@ def main():
             cur = next((x for x in lst if x.get('ex') == r['ex']), None)
             if cur is None:
                 lst.append({'ex': r['ex'], 'pay': r['pay'], 'amount': r['amount'], 'officialPay': False,
-                            'amountEstimated': False, 'sources': [src], 'note': '取自玩股網，未經發行商公告頁直接確認'})
+                            'amountEstimated': False, 'sources': [src], 'note': '取自 Yahoo 奇摩股市，未經發行商公告頁直接確認'})
                 changed.append((code, r['ex'], '新增'))
             elif not cur.get('officialPay'):
                 if cur.get('amount') != r['amount'] or cur.get('pay') != r['pay']:
                     cur['amount'] = r['amount']; cur['pay'] = r['pay']; cur['amountEstimated'] = False
                     if src not in cur.setdefault('sources', []): cur['sources'].append(src)
-                    cur['note'] = '取自玩股網，未經發行商公告頁直接確認'
+                    cur['note'] = '取自 Yahoo 奇摩股市，未經發行商公告頁直接確認'
                     changed.append((code, r['ex'], '更新'))
         lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
     if not changed:
