@@ -143,6 +143,57 @@ def yuanta_merge(data):
     lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
     return changed
 
+# 國泰投信「基金公告」PDF：實際／預估配息金額只有公告檔裡才有
+def roc(txt):
+    m = re.search(r'(\d{2,3})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日', txt or '')
+    return '%04d-%02d-%02d' % (int(m.group(1)) + 1911, int(m.group(2)), int(m.group(3))) if m else None
+
+def pdf_text(url):
+    import subprocess, tempfile, os
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0', 'Referer': 'https://www.cathaysite.com.tw/'})
+    raw = urllib.request.urlopen(req, timeout=60).read()
+    with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as f:
+        f.write(raw); path = f.name
+    try:
+        return subprocess.run(['pdftotext', '-layout', path, '-'], capture_output=True, text=True, timeout=60).stdout
+    finally:
+        os.unlink(path)
+
+def cathay_announce(data, changed):
+    lst = data['items'].setdefault('00878', [])
+    try:
+        req = urllib.request.Request('https://cwapi.cathaysite.com.tw/api/Fund/GetAnnouncementList?PageIndex=1', headers={
+            'User-Agent': 'Mozilla/5.0', 'Origin': 'https://www.cathaysite.com.tw', 'Referer': 'https://www.cathaysite.com.tw/'})
+        items = json.loads(urllib.request.urlopen(req, timeout=30).read().decode('utf-8'))['result'] or []
+    except Exception as e:
+        print('國泰公告清單抓取失敗', e); return
+    ann = [x for x in items if '永續高股息' in x.get('title', '') and '收益分配' in x.get('title', '') and x.get('filePath')]
+    ann.sort(key=lambda x: x.get('declareTime', ''))   # 舊到新，新的覆蓋舊的
+    print('國泰公告：00878 相關', len(ann), '份')
+    for a in ann:
+        url = 'https://cwapi.cathaysite.com.tw' + a['filePath']
+        try: txt = pdf_text(url)
+        except Exception as e:
+            print('PDF 讀取失敗', url, e); continue
+        ex = roc((re.search(r'除息交易日[：:]\s*([^\n]*)', txt) or [None, ''])[1])
+        pay = roc((re.search(r'收益分配發放日[：:]\s*([^\n]*)', txt) or [None, ''])[1])
+        m = re.search(r'新臺幣\s*([\d.]+)\s*元', txt)
+        if not (ex and pay and m): print('公告格式讀不出來', url); continue
+        amt = float(m.group(1))
+        if not (0 < amt < 10): continue
+        est = '期前' in a['title']
+        cur = next((x for x in lst if x.get('ex') == ex), None)
+        if cur is None:
+            cur = {'ex': ex, 'pay': pay, 'amount': amt, 'officialPay': True, 'amountEstimated': est, 'sources': []}
+            lst.append(cur); changed.append(('00878', ex, '公告新增'))
+        before = (cur.get('pay'), cur.get('amount'), cur.get('amountEstimated'), cur.get('officialPay'))
+        cur.update({'pay': pay, 'amount': amt, 'amountEstimated': est, 'officialPay': True})
+        for u in (url, CATHAY_SRC):
+            if u not in cur.setdefault('sources', []): cur['sources'].append(u)
+        cur['note'] = ('國泰投信公告（%s）的預估金額，實際金額於除息日前 3 個營業日公布' % a['declareTime']) if est else '國泰投信正式公告金額（%s）' % a['declareTime']
+        if before != (cur['pay'], cur['amount'], cur['amountEstimated'], cur['officialPay']): changed.append(('00878', ex, '公告確認'))
+    lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
+
 def main():
     path = 'dividends.json'
     data = json.load(open(path, encoding='utf-8'))
@@ -172,6 +223,7 @@ def main():
                     changed.append((code, r['ex'], '更新'))
         lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
     changed += cathay_merge(data)
+    cathay_announce(data, changed)
     changed += capital_merge(data)
     changed += yuanta_merge(data)
     if not changed:
