@@ -1,0 +1,14 @@
+name: probe
+on: workflow_dispatch
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
+          for u in \
+            "https://api.nasdaq.com/api/quote/VOO/dividends?assetclass=etf" \
+            "https://api.nasdaq.com/api/quote/QQQM/dividends?assetclass=etf" \
+            "https://stockanalysis.com/etf/voo/dividend/" \
+            "https://query1.finance.yahoo.com/v8/finance/chart/VOO?range=1y&interval=1d&events=div" ; do
+            c=$(curl -s -m 25 -H "Accept: application/json, text/html" -A "$UA" -o /tmp/o -w "%{http_code} %{size_download}" "$u" || echo fail); echo "PROBE $c $u"; head -c 700 /tmp/o | tr '\n' ' ' | sed 's/^/PROBE BODY /'; echo; done
