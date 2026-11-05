@@ -69,6 +69,36 @@ def cathay_merge(data):
     lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
     return changed
 
+# ---- 群益投信官網（官方）：00919（頁面伺服器端直接輸出配息表）----
+CAPITAL_SRC = 'https://www.capitalfund.com.tw/etf/product/detail/195/interest'
+CAP_ROW = re.compile(r'除息日\s*(\d{4}/\d{2}/\d{2})\s*發放日\s*(\d{4}/\d{2}/\d{2})\s*每單位分配金額\(元\)\s*(\d+(?:\.\d+)?)')
+
+def capital_merge(data):
+    changed = []
+    try:
+        req = urllib.request.Request(CAPITAL_SRC, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36', 'Accept-Language': 'zh-TW,zh;q=0.9'})
+        raw = urllib.request.urlopen(req, timeout=30).read().decode('utf-8', 'replace')
+    except Exception as e:
+        print('群益官網抓取失敗', e); return changed
+    text = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'<(script|style)[\s\S]*?</\1>', ' ', raw))))
+    if '00919' not in text:
+        print('群益頁面看起來不是 00919，略過'); return changed
+    rows = [(d8(a), d8(b), float(c)) for a, b, c in CAP_ROW.findall(text)]
+    print('群益官網：解析到', len(rows), '筆', rows[:2])
+    lst = data['items'].setdefault('00919', [])
+    for ex, pay, amt in rows[:6]:
+        if not (0 < amt < 10 and pay >= ex): continue
+        cur = next((x for x in lst if x.get('ex') == ex), None)
+        if cur is None:
+            lst.append({'ex': ex, 'pay': pay, 'amount': amt, 'officialPay': True, 'amountEstimated': False, 'sources': [CAPITAL_SRC]})
+            changed.append(('00919', ex, '群益新增')); continue
+        before = (cur.get('pay'), cur.get('amount'), cur.get('officialPay'))
+        cur.update({'pay': pay, 'amount': amt, 'officialPay': True, 'amountEstimated': False})
+        if CAPITAL_SRC not in cur.setdefault('sources', []): cur['sources'].append(CAPITAL_SRC)
+        if before != (cur['pay'], cur['amount'], cur['officialPay']): changed.append(('00919', ex, '群益確認'))
+    lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
+    return changed
+
 def main():
     path = 'dividends.json'
     data = json.load(open(path, encoding='utf-8'))
@@ -98,6 +128,7 @@ def main():
                     changed.append((code, r['ex'], '更新'))
         lst.sort(key=lambda x: x.get('ex', ''), reverse=True)
     changed += cathay_merge(data)
+    changed += capital_merge(data)
     if not changed:
         print('沒有變動'); return
     data['updatedAt'] = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(timespec='seconds')
