@@ -1,0 +1,20 @@
+name: update-tw-dividends
+on:
+  schedule:
+    - cron: '30 22 * * *'   # 台灣時間每天 06:30
+    - cron: '0 8 * * *'     # 台灣時間每天 16:00
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/update_tw.py
+      - name: commit
+        run: |
+          if ! git diff --quiet dividends.json; then
+            git config user.name "dividend-bot"; git config user.email "bot@users.noreply.github.com"
+            git add dividends.json && git commit -m "自動更新台股配息（玩股網）" && git push
+          fi
