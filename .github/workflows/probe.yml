@@ -5,15 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for u in \
-            "https://www.wantgoo.com/stock/etf/00878/dividend-policy/ex-dividend" \
-            "https://tw.stock.yahoo.com/quote/00878.TW/dividend" \
-            "https://tw.finance.yahoo.com/quote/00878.TW/dividend" \
-            "https://www.twse.com.tw/zh/ETFortune/etfInfo/00878" \
-            "https://www.twse.com.tw/rwd/zh/exRight/TWT48U?response=json" \
-            "https://www.twse.com.tw/rwd/zh/exRight/TWT49U?response=json" \
-            "https://goodinfo.tw/tw/StockDividendPolicy.asp?STOCK_ID=00878" \
-            "https://www.cathaysite.com.tw/ETF/detail/EEA?tab=etf5" \
-            "https://www.capitalfund.com.tw/etf/product/detail/195/interest" \
-            "https://www.moneydj.com/etf/x/basic/basic0005.xdjhtm?etfid=00878.tw" ; do
-            c=$(curl -s -m 25 -o /tmp/o -w "%{http_code} %{size_download}" -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124 Safari/537.36" "$u"); echo "PROBE $c $u"; done
+          curl -s -m 30 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124 Safari/537.36" "https://tw.stock.yahoo.com/quote/00878.TW/dividend" -o /tmp/y.html || true
+          python3 - <<'PY'
+          import re
+          t=open('/tmp/y.html',encoding='utf-8',errors='replace').read()
+          for m in list(re.finditer(r'2026/11/17|2026-11-17|2026/12/11|2026-12-11', t))[:4]:
+              print('PROBE', repr(t[max(0,m.start()-300):m.end()+300]))
+          print('PROBE len', len(t), 'has1.25', '1.25' in t)
+          PY
