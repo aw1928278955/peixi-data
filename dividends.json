@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updatedAt": "2026-11-17T02:00:08+08:00",
+ "updatedAt": "2026-11-17T12:43:33+08:00",
  "note": "整理自公開網頁；officialPay=false 代表發放日未經發行商公告頁直接確認",
  "items": {
   "VOO": [
@@ -220,7 +220,8 @@
     "amountEstimated": false,
     "sources": [
      "https://www.cathaysite.com.tw/ETF/detail/ECN?tab=etf5"
-    ]
+    ],
+    "note": "發放日經國泰投信官網確認；金額尚未公告"
    },
    {
     "ex": "2026-11-17",
